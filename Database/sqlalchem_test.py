@@ -207,3 +207,11 @@ session.query(Customer).filter(or_(
     Customer.town == 'Peterbrugh',
     Customer.town == 'Norfolk'
 )).all()
+
+
+# find all customers whose first name is John and live in Norfolk
+
+session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    Customer.town == 'Norfolk'
+)).all()
