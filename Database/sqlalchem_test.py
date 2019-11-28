@@ -236,3 +236,29 @@ session.query(Item).filter(Item.name.ilike("w%")).all()
 session.query(Item).filter(not_(Item.name.like("W%"))).all()
 session.query(Customer).limit(2).all()
 session.query(Customer).filter(Customer.address.ilike("%avenue")).limit(2).all()
+
+# find the number of customers lives in each town
+
+session.query(
+    func.count("*").label('town_count'),
+    Customer.town
+).group_by(Customer.town).having(func.count("*") > 2).all()
+
+session.query(Customer.town).filter(Customer.id < 10).all()
+session.query(Customer.town).filter(Customer.id < 10).distinct().all()
+
+session.query(
+    func.count(distinct(Customer.town)),
+    func.count(Customer.town)
+).all()
+
+s1 = session.query(Item.id, Item.name).filter(Item.name.like("Wa%"))
+s2 = session.query(Item.id, Item.name).filter(Item.name.like("%e%"))
+s1.union(s2).all()
+
+s1.union_all(s2).all()
+
+i = session.query(Item).get(8)
+i.selling_price = 25.91
+session.add(i)
+session.commit()
