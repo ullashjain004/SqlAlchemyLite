@@ -262,3 +262,21 @@ i = session.query(Item).get(8)
 i.selling_price = 25.91
 session.add(i)
 session.commit()
+
+# update quantity of all quantity of items to 60 whose name starts with 'W'
+
+session.query(Item).filter(
+    Item.name.ilike("W%")
+).update({"quantity": 60}, synchronize_session='fetch')
+session.commit()
+
+session.query(Customer).filter(text("first_name = 'John'")).all()
+
+session.query(Customer).filter(text("town like 'Nor%'")).all()
+
+session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc")).all()
+
+session.commit()
+
+dispatch_order(1)
+dispatch_order(2)
