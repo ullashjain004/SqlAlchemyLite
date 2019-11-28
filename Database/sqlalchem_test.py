@@ -5,8 +5,6 @@ from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 
 
-# from pprint import pprint
-
 # create a Session object to use Session class from sqlalchemy.orm
 # Creating connection between alchemy and sql lite
 engine = create_engine('sqlite:////web/Sqlite-Data/example5.db')
