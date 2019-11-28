@@ -154,3 +154,17 @@ i8 = Item(name='Water Bottle', cost_price=20.89, selling_price=25, quantity=50)
 
 session.add_all([i1, i2, i3, i4, i5, i6, i7, i8])
 session.commit()
+
+o1 = Order(customer=c1)
+o2 = Order(customer=c1)
+
+line_item1 = OrderLine(order=o1, item=i1, quantity=3)
+line_item2 = OrderLine(order=o1, item=i2, quantity=2)
+line_item3 = OrderLine(order=o2, item=i1, quantity=1)
+line_item3 = OrderLine(order=o2, item=i2, quantity=4)
+
+session.add_all([o1, o2])
+
+session.new
+session.commit()
+
