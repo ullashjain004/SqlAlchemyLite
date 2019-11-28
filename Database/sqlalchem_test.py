@@ -199,3 +199,11 @@ session.query(Customer).join(Order).all()
 # print(session.query(Customer).join(Order))
 
 session.query(Customer.id, Customer.username, Order.id).join(Order).all()
+
+
+# find all customers who either live in Peterbrugh or Norfolk
+
+session.query(Customer).filter(or_(
+    Customer.town == 'Peterbrugh',
+    Customer.town == 'Norfolk'
+)).all()
